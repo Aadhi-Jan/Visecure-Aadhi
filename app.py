@@ -18,20 +18,9 @@ CORS(app)
 @app.route('/predict', methods=['GET'])
 def predict():
     url = str(request.args['query'])
-  #  return jsonify({'url' : address})
     
     data = bz2.BZ2File('model2.pbz2', 'rb')
     pipe = pickle.load(data)
-
-
-
-
-
-    
-
-
-    
-    
 
     if url != "":
         # Send a GET request to the URL and get its HTML content
