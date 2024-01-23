@@ -11,7 +11,7 @@ from googlesearch import search
 import pandas as pd
 import bz2file as bz2
 from flask_cors import CORS
-from urllib.parse import urlparse
+
 
 app = Flask(__name__)
 CORS(app)
@@ -189,7 +189,7 @@ def predict():
         if result==1:
             return jsonify({"prediction" : "The website look's clean"}), 200
         else:
-            return jsonify({"prediction", "The website look's suspicious"}), 200
+            return jsonify({"prediction" :"The website look's suspicious"}), 200
             
 
 @app.route('/')
