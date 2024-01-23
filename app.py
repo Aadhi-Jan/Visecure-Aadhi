@@ -11,12 +11,15 @@ from googlesearch import search
 import pandas as pd
 import bz2file as bz2
 from flask_cors import CORS
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 CORS(app)
 @app.route('/predict', methods=['GET'])
 def predict():
-    address = request.args.get('params1')
+    url = str(request.args['query'])
+  #  return jsonify({'url' : address})
+    
     data = bz2.BZ2File('model2.pbz2', 'rb')
     pipe = pickle.load(data)
 
@@ -24,11 +27,10 @@ def predict():
 
 
 
-    url = address
+    
 
-    if  "https://" not in url:
-        url = "https://" + url
 
+    
     
 
     if url != "":
@@ -185,15 +187,15 @@ def predict():
             print(input_df)
         print("\n\n\n",result)
         if result==1:
-            return jsonify("The website look's clean")
+            return jsonify({"prediction" : "The website look's clean"}), 200
         else:
-            return("The website look's suspicious")
+            return jsonify({"prediction", "The website look's suspicious"}), 200
             
 
 @app.route('/')
 def index():
     
-    return "Welcome"
+    return jsonify({'value': "YES"}), 200
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
