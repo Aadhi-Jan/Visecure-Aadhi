@@ -178,7 +178,7 @@ def predict():
         if result==1:
             return jsonify({"prediction" : "The website look's clean"}), 200
         else:
-            return jsonify({"prediction" :"The website look's suspicious"}), 220
+            return jsonify({"prediction" :"The website look's suspicious"}), 200
             
 
 @app.route('/')
